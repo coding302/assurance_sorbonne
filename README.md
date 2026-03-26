@@ -1,4 +1,4 @@
-# Évaluation du Profil de Risque Client (Streamlit)
+# Évaluation du Profil de Risque Client (Streamlit): https://assurancesorbonne.streamlit.app/
 
 Cette application Streamlit estime un risque client, affiche une tarification indicative, et fournit des explications explicables via SHAP. Un assistant métier basé sur l'API OpenAI complète les réponses.
 
