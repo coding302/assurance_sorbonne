@@ -1,0 +1,17 @@
+streamlit
+pandas
+joblib
+shap
+matplotlib
+python-dotenv
+langchain
+langchain-core
+langchain-openai
+
+# Dependencies courantes pour charger le modèle joblib
+numpy
+scipy
+# scikit-learn 1.6+ est requis pour XGBoost 2.0+ (compatibilité __sklearn_tags__)
+scikit-learn>=1.6.0
+xgboost>=2.0.0
+
