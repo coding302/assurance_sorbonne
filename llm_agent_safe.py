@@ -8,12 +8,7 @@ from dotenv import load_dotenv
 import os
 
 from langchain_openai import ChatOpenAI
-try:
-    # langchain >= 0.1 — package séparé langchain-core
-    from langchain_core.messages import SystemMessage, HumanMessage
-except ImportError:
-    # langchain < 0.1 — ancien emplacement
-    from langchain.schema import SystemMessage, HumanMessage  # type: ignore[no-redef]
+from langchain_core.messages import SystemMessage, HumanMessage
 
 load_dotenv()
 

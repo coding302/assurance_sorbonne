@@ -3,10 +3,7 @@ from dotenv import load_dotenv
 import os
 
 from langchain_openai import ChatOpenAI
-try:
-    from langchain_core.messages import SystemMessage, HumanMessage
-except ImportError:
-    from langchain.schema import SystemMessage, HumanMessage  # type: ignore[no-redef]
+from langchain_core.messages import SystemMessage, HumanMessage
 
 load_dotenv()
 
