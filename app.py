@@ -162,7 +162,7 @@ if page == "Profil de risque":
     <iframe title="Solvability"
             width="100%"
             height="600"
-            src="https://app.powerbi.com/view?r=eyJrIjoiOGVjNmZmMmMtNmZjYy00Y2IyLThlODMtOTA5Yjc5ODhkMGZhIiwidCI6ImRiZDY2NjRkLTRlYjktNDZlYi05OWQ4LTVjNDNiYTE1M2M2MSIsImMiOjl9"
+            src="https://app.powerbi.com/reportEmbed?reportId=8e106567-3161-4e8e-bbe5-ceceb677f09db6&autoAuth=true&ctid=dbd6664d-4eb9-46eb-99d8-5c43ba153c61&actionBarEnabled=true&reportCopilotInEmbed=true"
             frameborder="0"
             allowFullScreen="true">
     </iframe>

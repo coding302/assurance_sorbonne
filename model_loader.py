@@ -8,29 +8,6 @@ from typing import Optional
 import joblib
 
 
-def _apply_sklearn_pickle_compat() -> None:
-    """
-    Shim de compatibilité pickle pour sklearn.
-
-    `_RemainderColsList` est une sous-classe privée de `list` introduite dans
-    sklearn 1.1 pour stocker les colonnes "remainder" du ColumnTransformer.
-    Elle a été supprimée / renommée en sklearn 1.6+.
-
-    Quand un modèle entraîné avec sklearn < 1.6 est dépicklé sur sklearn 1.6+
-    (ex. Streamlit Cloud), pickle ne trouve plus la classe → AttributeError.
-
-    Solution : réinjecter `_RemainderColsList = list` dans le module avant le
-    chargement. `list` est suffisant car la classe n'était qu'une liste avec
-    un nom différent ; le comportement à l'exécution est identique.
-    """
-    try:
-        import sklearn.compose._column_transformer as _ct
-        if not hasattr(_ct, "_RemainderColsList"):
-            _ct._RemainderColsList = list  # type: ignore[attr-defined]
-    except Exception:
-        pass  # Ne jamais bloquer le démarrage pour un shim de compat
-
-
 def project_root() -> Path:
     return Path(__file__).resolve().parent
 
@@ -52,11 +29,14 @@ def resolve_model_path(base_dir: Optional[Path] = None) -> Path:
 
 
 def load_pipeline(path: "str | Path"):
-    # Appliquer le shim avant tout chargement pickle
-    _apply_sklearn_pickle_compat()
-
+    # Le modèle peut avoir été sauvegardé avec une ancienne version de XGBoost.
+    # L'avertissement est attendu et inoffensif : le booster se charge correctement.
     with warnings.catch_warnings():
-        warnings.filterwarnings("ignore", message=".*older version of XGBoost.*", category=UserWarning)
+        warnings.filterwarnings(
+            "ignore",
+            message=".*older version of XGBoost.*",
+            category=UserWarning,
+        )
         return joblib.load(str(path))
 
 
